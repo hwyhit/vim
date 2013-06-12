@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-10 18:57
+" -----------------     Date: 2013-06-12 18:51
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,9 +14,11 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
+    " set tags+=D:/Ruchee/workspace/Apps/Libs/ThinkPHP/tags
     " set tags+=D:/Ruchee/workspace/Apps/Libs/Laravel/tags
 else
-    " set tags+=~/work/libs/Laravel/tags
+    " set tags+=~/code/libs/ThinkPHP/tags
+    " set tags+=~/code/libs/Laravel/tags
 endif
 
 
@@ -155,7 +157,7 @@ else
     colorscheme molokai
     "colorscheme tango2
     "colorscheme blackboard
-    set guifont=Monaco\ 12
+    set guifont=Monaco\ 11
 endif
 
 
@@ -169,8 +171,8 @@ set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
-set nu!                      " 显示行号
-"set relativenumber          " 开启相对行号
+"set nu!                     " 显示行号
+set relativenumber           " 开启相对行号
 set mouse=a                  " 启用鼠标
 set ruler                    " 右下角显示光标位置的状态行
 set incsearch                " 开启实时搜索功能
@@ -284,12 +286,11 @@ if has("win32")
 else
     let g:snippets_dir='~/.vim/snippets/'
 endif
-
 let g:snipMate={}
 let g:snipMate.scope_aliases={}
+let g:snipMate.scope_aliases['c']='cpp'
 let g:snipMate.scope_aliases['php']='php,html'
 let g:snipMate.scope_aliases['blade']='blade,html'
-let g:snipMate.scope_aliases['eruby']='html'
 let g:snipMate.scope_aliases['xhtml']='html'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
@@ -375,7 +376,11 @@ nmap <leader>nu <ESC>:se nu!<CR>
 " 编译源文件
 func! CompileCode()
     exec "w"
-    if &filetype == "php"
+    if &filetype == "c"
+        exec "!clang -Wall -std=c11 -o %:r %:t"
+    elseif &filetype == "cpp"
+        exec "!clang++ -Wall -std=c++11 -o %:r %:t"
+    elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
@@ -384,7 +389,9 @@ endfunc
 
 " 运行可执行文件
 func! RunCode()
-    if &filetype == "php"
+    if &filetype == "c" || &filetype == "cpp"
+        exec "!./%:r"
+    elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"

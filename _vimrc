@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-13 08:47
+" -----------------     Date: 2013-06-13 18:07
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,11 +14,11 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
-    " set tags+=D:/Ruchee/workspace/Apps/Libs/Laravel/tags
-    " set tags+=D:/Ruchee/workspace/Apps/Libs/ZF2/tags
+    " set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
 else
     " set tags+=~/code/libs/Laravel/tags
-    " set tags+=~/code/libs/ZF2/tags
+    " set path+=/usr/include/linux
+    " set path+=/usr/include/c++/4.7
 endif
 
 
@@ -61,6 +61,7 @@ endif
 " \C                         --单源文件编译           [全模式可用]
 " \R                         --单源文件运行           [全模式可用]
 "
+" \ww                        --开发Vimwiki主页
 " \nt                        --打开NERDTree文件树窗口
 " \tl                        --打开/关闭TagList窗口
 " \ig                        --显示/关闭对齐线
@@ -147,6 +148,13 @@ endif
 " q字符 xxx q and @字符      --录制宏   and 执行宏
 
 
+" ---------- Vimwiki [Vim中的wiki/blog系统] ----------------
+"
+" 链接：[[链接地址|链接描述]]
+" 图片：{{图片地址||属性1="属性值" 属性2="属性值"}}
+" 代码：{{{class="brush: cpp" 代码}}}
+
+
 " 设置颜色模式和字体
 if has("win32")
     colorscheme molokai
@@ -164,7 +172,11 @@ endif
 " 设置缩进策略
 set shiftwidth=4             " 换行时行间交错使用的空格数量
 set cindent shiftwidth=4     " 自动缩进的空格数量
-set tabstop=4                " 设置Tab键的宽度
+
+" 对部分语言设置单独的缩进策略
+au FileType ruby,eruby,coffee set shiftwidth=2
+au FileType ruby,eruby,coffee set shiftwidth=2
+au FileType ruby,eruby,coffee set tabstop=2
 
 
 set backspace=2              " 设置退格键可用
@@ -388,8 +400,12 @@ func! CompileCode()
         else
             exec "!clang++ -Wall -std=c++11 -o %:r %:t"
         endif
+    elseif &filetype == "ruby"
+        exec "!ruby %:t"
     elseif &filetype == "php"
         exec "!php %:t"
+    elseif &filetype == "coffee"
+        exec "!coffee -c %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     endif
@@ -403,8 +419,12 @@ func! RunCode()
         else
             exec "!./%:r"
         endif
+    elseif &filetype == "ruby"
+        exec "!ruby %:t"
     elseif &filetype == "php"
         exec "!php %:t"
+    elseif &filetype == "coffee"
+        exec "!coffee %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     endif
@@ -421,3 +441,29 @@ nmap <leader>R :call RunCode()<CR>
 " \T         一键加载语法模板
 imap <leader>T <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 nmap <leader>T :LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+
+
+" ======= VimWiki ======= "
+
+let g:vimwiki_w32_dir_enc='utf-8' " 设置编码
+
+let g:vimwiki_use_mouse=1         " 使用鼠标映射
+
+" 声明可以在wiki里面使用的HTML标签
+let g:vimwiki_valid_html_tags = 'a,b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h1,h2,h3,h4,h5,h6,pre,script,style,meter,progress,form,fieldset,legend,input'
+
+let blog = {}
+if has("win32")
+    let blog.path          = 'D:/Ruchee/Files/mysite/wiki/'
+    let blog.path_html     = 'D:/Ruchee/Files/mysite/html/'
+    let blog.template_path = 'D:/Ruchee/Files/mysite/templates/'
+else
+    let blog.path          = '~/mysite/wiki/'
+    let blog.path_html     = '~/mysite/html/'
+    let blog.template_path = '~/mysite/templates/'
+endif
+let blog.template_default  = 'site'
+let blog.template_ext      = '.html'
+let blog.auto_export       = 1
+
+let g:vimwiki_list = [blog]

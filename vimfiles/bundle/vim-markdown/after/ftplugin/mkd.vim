@@ -44,7 +44,7 @@ if !exists("g:vim_markdown_folding_disabled")
   " change the following fold options to your liking
   " see ':help fold-options' for more
   setlocal foldenable
-  setlocal foldlevel=0
+  setlocal foldlevel=100
   setlocal foldcolumn=0
   set foldmethod=expr
   set foldopen-=search

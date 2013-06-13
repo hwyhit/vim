@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-12 18:51
+" -----------------     Date: 2013-06-13 08:47
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,11 +14,11 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
-    " set tags+=D:/Ruchee/workspace/Apps/Libs/ThinkPHP/tags
     " set tags+=D:/Ruchee/workspace/Apps/Libs/Laravel/tags
+    " set tags+=D:/Ruchee/workspace/Apps/Libs/ZF2/tags
 else
-    " set tags+=~/code/libs/ThinkPHP/tags
     " set tags+=~/code/libs/Laravel/tags
+    " set tags+=~/code/libs/ZF2/tags
 endif
 
 
@@ -377,9 +377,17 @@ nmap <leader>nu <ESC>:se nu!<CR>
 func! CompileCode()
     exec "w"
     if &filetype == "c"
-        exec "!clang -Wall -std=c11 -o %:r %:t"
+        if has("win32")
+            exec "!gcc -Wall -std=c11 -o %:r %:t"
+        else
+            exec "!clang -Wall -std=c11 -o %:r %:t"
+        endif
     elseif &filetype == "cpp"
-        exec "!clang++ -Wall -std=c++11 -o %:r %:t"
+        if has("win32")
+            exec "!g++ -Wall -std=c++11 -o %:r %:t"
+        else
+            exec "!clang++ -Wall -std=c++11 -o %:r %:t"
+        endif
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"
@@ -390,7 +398,11 @@ endfunc
 " 运行可执行文件
 func! RunCode()
     if &filetype == "c" || &filetype == "cpp"
-        exec "!./%:r"
+        if has("win32")
+            exec "!%:r.exe"
+        else
+            exec "!./%:r"
+        endif
     elseif &filetype == "php"
         exec "!php %:t"
     elseif &filetype == "sh"

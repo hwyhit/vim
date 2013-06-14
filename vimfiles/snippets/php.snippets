@@ -23,9 +23,10 @@ snippet doc     跨行文本
 snippet na      命名空间（行语法）
 	namespace ${1};${2}
 snippet na.     命名空间（大括号语法）
-	namespace${1}
-	{
+	namespace${1} {
+
 	    ${2}
+
 	}
 snippet u       设置别名
 	use ${1};${2}
@@ -44,39 +45,46 @@ snippet df      定义常量
 	define('${1}', ${2});${3}
 # 接口、类、方法
 snippet int     接口定义
-	interface ${1:int_name}
-	{
+	interface ${1:int_name} {
+
 	    ${2}
+
 	}
 snippet cl      类定义
-	class ${1:cl_name}
-	{
+	class ${1:cl_name} {
+
 	    ${2}
+
 	}
 snippet cle     带继承的类定义
-	class ${1:cl_nameA} extends ${2:cl_nameB}
-	{
+	class ${1:cl_nameA} extends ${2:cl_nameB} {
+
 	    ${3}
+
 	}
 snippet cli     实现接口的类定义
-	class ${1:cl_name} implements ${2:cl_intName}
-	{
+	class ${1:cl_name} implements ${2:cl_intName} {
+
 	    ${3}
+
 	}
 snippet clei    先继承后实现接口的类定义
-	class ${1:cl_nameA} extends ${2:cl_nameB} implements ${3:cl_intName}
-	{
+	class ${1:cl_nameA} extends ${2:cl_nameB} implements ${3:cl_intName} {
+
 	    ${4}
+
 	}
 snippet clee    继承异常类
-	class ${1:cl_name} extends Exception
-	{
+	class ${1:cl_name} extends Exception {
+
 	    ${2}
+
 	}
 snippet f       函数定义
-	function ${1:f_name} (${2})
-	{
+	function ${1:f_name} (${2}) {
+
 	    ${3}
+
 	}
 snippet ff      匿名函数（不换行）
 	function (${1}) {${2}}
@@ -85,54 +93,64 @@ snippet ffu     带use子句的匿名函数
 snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
-	function __construct (${1})
-	{
+	function __construct (${1}) {
+
 	    ${2}
+
 	}
 snippet fd      析构方法
-	function __destruct ()
-	{
+	function __destruct () {
+
 	    ${1}
+
 	}
 snippet fcl     克隆方法
-	function __clone ()
-	{
+	function __clone () {
+
 	    ${1}
+
 	}
 snippet fts     将类当作字符串打印
-	function __toString (${1})
-	{
+	function __toString (${1}) {
+
 	    ${2}
+
 	}
 snippet fal     自动加载
-	function __autoload (${1})
-	{
+	function __autoload (${1}) {
+
 	    ${2}
+
 	}
 snippet fge     __get()：访问未定义的属性时被调用
-	function __get (${1:property})
-	{
+	function __get (${1:property}) {
+
 	    ${2}
+
 	}
 snippet fse     __set()：给未定义的属性赋值时被调用
-	function __set (${1:property}, ${2:value})
-	{
+	function __set (${1:property}, ${2:value}) {
+
 	    ${3}
+
 	}
 snippet fca     __call()：调用未定义的方法时被调用
-	function __call (${1:$methodname}, ${2:args})
-	{
+	function __call (${1:$methodname}, ${2:args}) {
+
 	    ${3}
+
 	}
 snippet fis     __isset()：对未定义的属性调用isset()时被调用
-	function __isset (${1:property})
-	{
+	function __isset (${1:property}) {
+
 	    ${2}
+
 	}
 snippet fus     __unset()：对未定义的属性调用unset()时被调用
-	function __unset (${1:property})
-	{
+	function __unset (${1:property}) {
+
 	    ${2}
+
 	}
 # 流程控制
 snippet if      if

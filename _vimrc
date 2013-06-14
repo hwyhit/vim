@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-13 19:47
+" -----------------     Date: 2013-06-14 13:45
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,7 +14,7 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
-    " set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
+    set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
 else
     " set tags+=~/code/libs/Laravel/tags
     " set path+=/usr/include/linux
@@ -401,6 +401,8 @@ func! CompileCode()
         else
             exec "!clang++ -Wall -std=c++11 -o %:r %:t"
         endif
+    elseif &filetype == "go"
+        exec "!go build %:t"
     elseif &filetype == "ruby"
         exec "!ruby %:t"
     elseif &filetype == "php"
@@ -414,7 +416,7 @@ endfunc
 
 " 运行可执行文件
 func! RunCode()
-    if &filetype == "c" || &filetype == "cpp"
+    if &filetype == "c" || &filetype == "cpp" || &filetype == "go"
         if has("win32")
             exec "!%:r.exe"
         else

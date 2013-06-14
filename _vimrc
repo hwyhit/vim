@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-14 13:45
+" -----------------     Date: 2013-06-14 17:50
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,7 +14,7 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
-    set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
+    " set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
 else
     " set tags+=~/code/libs/Laravel/tags
     " set path+=/usr/include/linux

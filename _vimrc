@@ -302,7 +302,8 @@ let g:snipMate={}
 let g:snipMate.scope_aliases={}
 let g:snipMate.scope_aliases['c']='cpp'
 let g:snipMate.scope_aliases['php']='php,html'
-let g:snipMate.scope_aliases['blade']='blade,php'
+let g:snipMate.scope_aliases['eruby']='eruby,html'
+let g:snipMate.scope_aliases['blade']='blade,html'
 let g:snipMate.scope_aliases['xhtml']='html'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合

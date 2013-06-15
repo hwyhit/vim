@@ -1,7 +1,7 @@
 " -----------------   Author: Ruchee
 " -----------------    Email: my@ruchee.com
 " -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2013-06-14 17:50
+" -----------------     Date: 2013-06-15 09:32
 " -----------------     For Windows, Cygwin and Linux
 
 
@@ -14,9 +14,9 @@ if has("win32")
     " set tags+=D:/Ruchee/workspace/admin.qycn.com/tags
     " set tags+=D:/Ruchee/workspace/common/tags
 
-    " set tags+=D:/Ruchee/workspace/Apps/libs/Laravel/tags
+    " set tags+=D:/Ruchee/workspace/Apps/libs/CodeIginter/tags
 else
-    " set tags+=~/code/libs/Laravel/tags
+    " set tags+=~/code/libs/CodeIginter/tags
     " set path+=/usr/include/linux
     " set path+=/usr/include/c++/4.7
 endif
@@ -303,7 +303,6 @@ let g:snipMate.scope_aliases={}
 let g:snipMate.scope_aliases['c']='cpp'
 let g:snipMate.scope_aliases['php']='php,html'
 let g:snipMate.scope_aliases['eruby']='eruby,html'
-let g:snipMate.scope_aliases['blade']='blade,html'
 let g:snipMate.scope_aliases['xhtml']='html'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
@@ -407,8 +406,6 @@ func! CompileCode()
         exec "!ruby %:t"
     elseif &filetype == "php"
         exec "!php %:t"
-    elseif &filetype == "coffee"
-        exec "!coffee -c %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     endif
@@ -426,8 +423,6 @@ func! RunCode()
         exec "!ruby %:t"
     elseif &filetype == "php"
         exec "!php %:t"
-    elseif &filetype == "coffee"
-        exec "!coffee %:t"
     elseif &filetype == "sh"
         exec "!bash %:t"
     endif
